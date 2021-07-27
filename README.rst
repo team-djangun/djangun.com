@@ -1,7 +1,7 @@
 Djangun PaaS project
 ====================
 
-장건 AWS 기반 PaaS 플랫폼 프로젝트. 글 프리셋 설정된 웹 서버 제공
+장건 - AWS 기반 PaaS 플랫폼 프로젝트. 한글 프리셋 설정된 웹 서버 제공
 
 .. image:: https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter
      :target: https://github.com/pydanny/cookiecutter-django/
@@ -9,6 +9,7 @@ Djangun PaaS project
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
      :target: https://github.com/ambv/black
      :alt: Black code style
+.. image:: docs/djangun.jpg
 
 Settings
 --------
