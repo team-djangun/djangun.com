@@ -24,5 +24,5 @@ case "$response" in
         echo "Interrupted."
         exit
         ;;
-       
+
 esac
