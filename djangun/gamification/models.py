@@ -144,3 +144,16 @@ class Achievement(models.Model):
 
     def get_absolute_url(self):
         return reverse("Achievement_detail", kwargs={"pk": self.pk})
+
+
+class Reward(models.Model):
+    """
+    """
+    
+
+    class Meta:
+        verbose_name = _("Reward")
+        verbose_name_plural = _("Rewards")
+
+    def __str__(self):
+        return self.name
