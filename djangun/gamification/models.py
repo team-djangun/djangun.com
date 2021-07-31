@@ -108,6 +108,17 @@ class LevelDefinition(models.Model):
         return self.level_name
 
 
+class GoalCategory(models.Model):
+    """
+    Categories for goals(badges and achieves) bundling.
+    """
+    category = models.CharField("category", unique=True, max_length=255)
+    next_goal = models.ForeignKey('self', null=True, on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return self.category
+
+
 class Badge(models.Model):
     """
     """
