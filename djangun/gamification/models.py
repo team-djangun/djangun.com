@@ -106,3 +106,41 @@ class LevelDefinition(models.Model):
 
     def __str__(self):
         return self.level_name
+
+
+class Badge(models.Model):
+    """
+    """
+    name = models.CharField(max_length=255)
+    description = models.TextField(null=True, blank=True)
+    next_badge = models.ForeignKey('self', null=True, on_delete=models.CASCADE)
+    
+
+    class Meta:
+        verbose_name = _("Badge")
+        verbose_name_plural = _("Badges")
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse("Badge_detail", kwargs={"pk": self.pk})
+
+
+class Achievement(models.Model):
+    """
+    """
+    name = models.CharField(max_length=128)
+    description = models.TextField(null=True, blank=True)
+    points_required = models.BigIntegerField(null=False, blank=False)
+    
+
+    class Meta:
+        verbose_name = _("Achievement")
+        verbose_name_plural = _("Achievements")
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse("Achievement_detail", kwargs={"pk": self.pk})
