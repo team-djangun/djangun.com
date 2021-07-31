@@ -78,3 +78,12 @@ class GamificationInterface(models.Model):
         # Reset badges
 
         # Reset achievements
+
+
+class ExpChange(models.Model):
+    """
+    Player EXP ledger model.
+    """
+    interface = models.ForeignKey(GamificationInterface, on_delete=models.CASCADE)
+    amount = models.BigIntegerField(null=False, blank=False)
+    time = models.DateTimeField(auto_now_add=True)
