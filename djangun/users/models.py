@@ -16,7 +16,7 @@ class User(AbstractUser):
     last_name = None  # type: ignore
     email = models.EmailField(_('email address'), blank=False)
 
-    is_register_payment = models.BooleanField("결제정보 등록", default=False)
+    is_register_payment = models.BooleanField("결제정보 등록여부", default=False)
 
     def get_absolute_url(self):
         """Get url for user's detail view.
