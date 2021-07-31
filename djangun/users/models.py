@@ -4,6 +4,9 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 
+#TODO: add payment data model - OnetoOne, signal?
+
+
 class User(AbstractUser):
     """Default user for Djangun PaaS project."""
 
@@ -11,6 +14,7 @@ class User(AbstractUser):
     name = models.CharField(_("Name of User"), blank=True, max_length=255)
     first_name = None  # type: ignore
     last_name = None  # type: ignore
+    email = models.EmailField(_('email address'), blank=False)
 
     is_register_payment = models.BooleanField("결제정보 등록", default=False)
 
