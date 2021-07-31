@@ -3,6 +3,8 @@ from django.db.models import Sum, F, Q
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
+from .managers import LevelDefinitionManager
+
 User = get_user_model()
 
 
@@ -103,9 +105,16 @@ class LevelDefinition(models.Model):
     level_exp = models.BigIntegerField(_("level exp"))
     total_exp = models.BigIntegerField(_("total exp"), null=True, blank=True)
 
+    objects = LevelDefinitionManager()
+
 
     class Meta:
         ordering = ['level_phase']
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.objects.update_total()
+
 
     def __str__(self):
         return self.level_name
