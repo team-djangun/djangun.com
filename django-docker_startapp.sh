@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Put this script in project main path.
 SHELL_PATH=`pwd -P`
 name=`whoami`
 appname=${1}
@@ -9,7 +10,7 @@ destinaton_path=$SHELL_PATH/${NAME_OF_PWD}
 
 echo -e ${appname}" app is will be created. starting...\n\n"
 
-echo -e ${created_path}" is creating path. please check.\n"
+echo -e ${created_path}" is creating path.\nIt will move into ${destinaton_path}/${appname}.\nPlease check.\n"
 read -r -p "Is it right? [Y/n] " response
 case "$response" in
     [yY][eE][sS]|[yY])
