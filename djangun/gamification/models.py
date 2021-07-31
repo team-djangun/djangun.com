@@ -87,3 +87,22 @@ class ExpChange(models.Model):
     interface = models.ForeignKey(GamificationInterface, on_delete=models.CASCADE)
     amount = models.BigIntegerField(null=False, blank=False)
     time = models.DateTimeField(auto_now_add=True)
+
+
+class LevelDefinition(models.Model):
+    """
+    Level exp design.
+    If you want to use level system as Tier system, you can do that.
+    set level name as bronze, silver, gold... or Beginner, Expert, Master...
+    """
+    level_phase = models.AutoField(_("level phase"), unique=True)
+    level_name = models.CharField(_("level name"), unique=True, max_length=255)
+    level_exp = models.BigIntegerField(_("level exp"))
+    total_exp = models.BigIntegerField(_("total exp"), null=True, blank=True)
+
+
+    class Meta:
+        ordering = ['level_phase']
+
+    def __str__(self):
+        return self.level_name
