@@ -1,7 +1,7 @@
 from django.db import models
-from django.db.models import Sum
+from django.db.models import Sum, F, Q
 from django.contrib.auth import get_user_model
-from django.db.models import F, Q
+from django.utils.translation import gettext_lazy as _
 
 User = get_user_model()
 
@@ -11,7 +11,7 @@ class Guild(models.Model):
     # TODO: apply Markdown at guild_description
     guild_description = models.TextField(
                                         _("guild description"),
-                                        default="no descriptions.")
+                                        default=_("no descriptions."))
     guild_anniversary = models.DateField(
                                         _("guild anniversary"),
                                         auto_now=False,
@@ -84,9 +84,12 @@ class ExpChange(models.Model):
     """
     Player EXP ledger model.
     """
-    interface = models.ForeignKey(GamificationInterface, on_delete=models.CASCADE)
-    amount = models.BigIntegerField(null=False, blank=False)
-    time = models.DateTimeField(auto_now_add=True)
+    interface = models.ForeignKey(
+                                GamificationInterface,
+                                verbose_name=_("exp changed interface"),
+                                on_delete=models.CASCADE)
+    amount = models.BigIntegerField(_("exp amount"), null=False, blank=False)
+    time = models.DateTimeField(_("changed date"), auto_now_add=True)
 
 
 class LevelDefinition(models.Model):
@@ -112,8 +115,12 @@ class GoalCategory(models.Model):
     """
     Categories for goals(badges and achieves) bundling.
     """
-    category = models.CharField("category", unique=True, max_length=255)
-    next_goal = models.ForeignKey('self', null=True, on_delete=models.SET_NULL)
+    category = models.CharField(_("category"), unique=True, max_length=255)
+    next_goal = models.ForeignKey(
+                                'self',
+                                verbose_name=_("next goal"),
+                                null=True,
+                                on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.category
@@ -122,16 +129,23 @@ class GoalCategory(models.Model):
 class Badge(models.Model):
     """
     """
-    badge_name = models.CharField(max_length=255)
-    description = models.TextField(null=True, blank=True)
-    next_badge = models.ForeignKey('self', null=True, on_delete=models.SET_NULL)
+    badge_name = models.CharField(_("badge name"), max_length=255)
+    description = models.TextField(
+                                _("badge description"),
+                                null=True,
+                                blank=True)
+    next_badge = models.ForeignKey(
+                                'self',
+                                verbose_name=_("next badge"),
+                                null=True,
+                                on_delete=models.SET_NULL)
     #TODO: reward connecting - just foreign?
     connected_interfaces = models.ManyToManyField(
                                         GamificationInterface,
                                         verbose_name=_("connected interfaces"))
     acquired_interfaces = models.ManyToManyField(
                                         GamificationInterface,
-                                        verbose_name=_("interfaces who acquired"))
+                                        verbose_name=_("acquired interfaces"))
     
 
     class Meta:
@@ -148,16 +162,23 @@ class Badge(models.Model):
 class Achievement(models.Model):
     """
     """
-    achieve_name = models.CharField(max_length=128)
-    description = models.TextField(null=True, blank=True)
-    next_achieve = models.ForeignKey('self', null=True, on_delete=models.SET_NULL)
+    achieve_name = models.CharField(_("achievement name"), max_length=128)
+    description = models.TextField(
+                                _("achive description"),
+                                null=True,
+                                blank=True)
+    next_achieve = models.ForeignKey(
+                                    'self',
+                                    verbose_name=_("next achieve")
+                                    null=True,
+                                    on_delete=models.SET_NULL)
     #TODO: reward connecting - just foreign?
     connected_interfaces = models.ManyToManyField(
                                         GamificationInterface,
                                         verbose_name=_("connected interfaces"))
     acquired_interfaces = models.ManyToManyField(
                                         GamificationInterface,
-                                        verbose_name=_("interfaces who acquired"))
+                                        verbose_name=_("acquired interfaces"))
     
 
     class Meta:
