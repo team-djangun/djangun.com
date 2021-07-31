@@ -40,3 +40,41 @@ class Guild(models.Model):
 
     def get_absolute_url(self):
         return reverse("Guild_detail", kwargs={"pk": self.pk})
+
+
+class GamificationInterface(models.Model):
+    """
+    A user should have a OnetoOnefield to a GamificationInterface to keep track
+    of all gamification related objects.
+    game_status = OneToOneField(GamificationInterface)
+    """
+    guild = models.ForeignKey(
+                            Guild,
+                            verbose_name=_("joined_guild"),
+                            null=True,
+                            on_delete=models.SET_NULL)
+
+    @property
+    def exps(self):
+        """
+        Return player's exp point.
+        """
+        return ExpChange.objects.filter(interface=self).aggregate(
+                                            Sum('amount'))['amount__sum'] or 0
+
+    def reset(self):
+        """
+        Reset player's points, badges, levels and achievements.
+
+        :param:
+        :return:
+        """
+        # Delete all exp transactions
+        self.expchange_set.all().delete()
+
+        # Reset level
+        self.level = 1
+
+        # Reset badges
+
+        # Reset achievements
