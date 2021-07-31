@@ -174,6 +174,9 @@ class Achievement(models.Model):
 class Reward(models.Model):
     """
     """
+    reward_exp = models.BigIntegerField(_("reward exp"), null=True, blank=True)
+    phrase = models.CharField(_("reward phrase"), max_length=255)
+    #TODO: coupon?
     
 
     class Meta:
