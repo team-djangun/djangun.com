@@ -111,9 +111,16 @@ class LevelDefinition(models.Model):
 class Badge(models.Model):
     """
     """
-    name = models.CharField(max_length=255)
+    badge_name = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
-    next_badge = models.ForeignKey('self', null=True, on_delete=models.CASCADE)
+    next_badge = models.ForeignKey('self', null=True, on_delete=models.SET_NULL)
+    #TODO: reward connecting - just foreign?
+    connected_interfaces = models.ManyToManyField(
+                                        GamificationInterface,
+                                        verbose_name=_("connected interfaces"))
+    acquired_interfaces = models.ManyToManyField(
+                                        GamificationInterface,
+                                        verbose_name=_("interfaces who acquired"))
     
 
     class Meta:
@@ -121,7 +128,7 @@ class Badge(models.Model):
         verbose_name_plural = _("Badges")
 
     def __str__(self):
-        return self.name
+        return self.badge_name
 
     def get_absolute_url(self):
         return reverse("Badge_detail", kwargs={"pk": self.pk})
@@ -130,9 +137,16 @@ class Badge(models.Model):
 class Achievement(models.Model):
     """
     """
-    name = models.CharField(max_length=128)
+    achieve_name = models.CharField(max_length=128)
     description = models.TextField(null=True, blank=True)
-    points_required = models.BigIntegerField(null=False, blank=False)
+    next_achieve = models.ForeignKey('self', null=True, on_delete=models.SET_NULL)
+    #TODO: reward connecting - just foreign?
+    connected_interfaces = models.ManyToManyField(
+                                        GamificationInterface,
+                                        verbose_name=_("connected interfaces"))
+    acquired_interfaces = models.ManyToManyField(
+                                        GamificationInterface,
+                                        verbose_name=_("interfaces who acquired"))
     
 
     class Meta:
@@ -140,7 +154,7 @@ class Achievement(models.Model):
         verbose_name_plural = _("Achievements")
 
     def __str__(self):
-        return self.name
+        return self.achieve_name
 
     def get_absolute_url(self):
         return reverse("Achievement_detail", kwargs={"pk": self.pk})
