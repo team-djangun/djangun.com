@@ -66,7 +66,7 @@ var rgbaColor = function rgbaColor() {
 
 var colors = {
   primary: '#A1B0FC',
-  secondary: '#424D83',
+  secondary: '#57926E',
   success: '#00d27a',
   info: '#27bcfd',
   warning: '#f5803e',
