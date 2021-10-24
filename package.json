@@ -57,13 +57,12 @@
     "node": ">=8"
   },
   "browserslist": [
-    "last 5 versions"
+    "last 2 versions"
   ],
   "scripts": {
     "dev": "gulp",
     "start": "gulp",
-    "build-origin": "gulp generate-assets",
-    "build": "cross-env MODE=PROD gulp build",
+    "build": "gulp generate-assets",
     "build:test": "cross-env MODE=PROD gulp build:test",
     "live": "gulp compile:all && cross-env MODE=PROD gulp live",
     "publish": "git subtree push --prefix live origin gh-pages",
