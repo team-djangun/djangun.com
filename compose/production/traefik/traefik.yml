@@ -31,7 +31,7 @@ certificatesResolvers:
 http:
   routers:
     web-secure-router:
-      rule: "Host(`scriptium.io`) || Host(`www.scriptium.io`)"
+      rule: "Host(`djangun.com`) || Host(`www.djangun.com`)"
       entryPoints:
         - web-secure
       middlewares:
@@ -42,7 +42,7 @@ http:
         certResolver: letsencrypt
 
     flower-secure-router:
-      rule: "Host(`scriptium.io`)"
+      rule: "Host(`djangun.com`)"
       entryPoints:
         - flower
       service: flower
