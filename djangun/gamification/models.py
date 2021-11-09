@@ -55,6 +55,8 @@ class GamificationInterface(models.Model):
                             verbose_name=_("joined_guild"),
                             null=True,
                             on_delete=models.SET_NULL)
+    records = models.ManyToManyField(Trophy, verbose_name=_("trophy records"), through="ShowCase")
+    achieves = models.ManyToManyField("Achievement", verbose_name=_("acquired achieves"))
 
     @property
     def exps(self):
@@ -66,7 +68,7 @@ class GamificationInterface(models.Model):
 
     def reset(self):
         """
-        Reset player's points, badges, levels and achievements.
+        Reset player's points, trophies, levels and achievements.
 
         :param:
         :return:
@@ -77,21 +79,11 @@ class GamificationInterface(models.Model):
         # Reset level
         self.level = 1
 
-        # Reset badges
+        # Reset trophys
+        self.records.clear()
 
         # Reset achievements
-
-
-class ExpChange(models.Model):
-    """
-    Player EXP ledger model.
-    """
-    interface = models.ForeignKey(
-                                GamificationInterface,
-                                verbose_name=_("exp changed interface"),
-                                on_delete=models.CASCADE)
-    amount = models.BigIntegerField(_("exp amount"), null=False, blank=False)
-    time = models.DateTimeField(_("changed date"), auto_now_add=True)
+        self.achieves.clear()
 
 
 class LevelDefinition(models.Model):
@@ -120,9 +112,21 @@ class LevelDefinition(models.Model):
         return self.level_name
 
 
+class ExpChange(models.Model):
+    """
+    Player EXP ledger model.
+    """
+    interface = models.ForeignKey(
+                                GamificationInterface,
+                                verbose_name=_("exp changed interface"),
+                                on_delete=models.CASCADE)
+    amount = models.IntegerField(_("exp amount"), null=False, blank=False)  # exp can have negative values
+    time = models.DateTimeField(_("changed date"), auto_now_add=True)
+
+
 class GoalCategory(models.Model):
     """
-    Categories for goals(badges and achieves) bundling.
+    Categories for goals(trophies and achieves) bundling.
     """
     category = models.CharField(_("category"), unique=True, max_length=255)
     next_goal = models.ForeignKey(
@@ -135,59 +139,61 @@ class GoalCategory(models.Model):
         return self.category
 
 
-class Badge(models.Model):
+class Trophy(models.Model):
     """
+    Trophy, Badge or Medal.
+    Big, important achievements.
+    differences from Achievements: User know Trophies' number & status.
+    Achievements don't show next or empty slots.
+    Trophies have both.
     """
-    badge_name = models.CharField(_("badge name"), max_length=255)
+    trophy_name = models.CharField(_("trophy name"), max_length=255)
     description = models.TextField(
-                                _("badge description"),
+                                _("trophy description"),
                                 null=True,
                                 blank=True)
-    next_badge = models.ForeignKey(
+    next_trophy = models.ForeignKey(
                                 'self',
-                                verbose_name=_("next badge"),
+                                verbose_name=_("next trophy"),
                                 null=True,
                                 on_delete=models.SET_NULL)
     #TODO: reward connecting - just foreign?
-    connected_interfaces = models.ManyToManyField(
-                                        GamificationInterface,
-                                        verbose_name=_("connected interfaces"))
-    acquired_interfaces = models.ManyToManyField(
-                                        GamificationInterface,
-                                        verbose_name=_("acquired interfaces"))
+    # connected_interfaces = models.ManyToManyField(
+    #                                     GamificationInterface,
+    #                                     verbose_name=_("connected interfaces"))
     
 
     class Meta:
-        verbose_name = _("Badge")
-        verbose_name_plural = _("Badges")
+        verbose_name = _("Trophy")
+        verbose_name_plural = _("Trophies")
 
     def __str__(self):
-        return self.badge_name
+        return self.trophy_name
 
     def get_absolute_url(self):
-        return reverse("Badge_detail", kwargs={"pk": self.pk})
+        return reverse("Trophy_detail", kwargs={"pk": self.pk})
+
+
+class ShowCase(models.Model):
+    game_interface =models.ForeignKey(GamificationInterface, on_delete=models.CASCADE)
+    trophy = models.ForeignKey(Trophy, on_delete=models.CASCADE)
+    is_acquired = models.BooleanField(_("trophy acquired"), default=False)
+    date_acquired = models.DateTimeField(_("last acquired date"), auto_now=True, auto_now_add=False)
 
 
 class Achievement(models.Model):
     """
+    Small achievements. For special or hidden challenge
     """
     achieve_name = models.CharField(_("achievement name"), max_length=128)
     description = models.TextField(
                                 _("achive description"),
                                 null=True,
                                 blank=True)
-    next_achieve = models.ForeignKey(
-                                    'self',
-                                    verbose_name=_("next achieve")
-                                    null=True,
-                                    on_delete=models.SET_NULL)
     #TODO: reward connecting - just foreign?
-    connected_interfaces = models.ManyToManyField(
-                                        GamificationInterface,
-                                        verbose_name=_("connected interfaces"))
-    acquired_interfaces = models.ManyToManyField(
-                                        GamificationInterface,
-                                        verbose_name=_("acquired interfaces"))
+    # acquired_interfaces = models.ManyToManyField(
+    #                                     GamificationInterface,
+    #                                     verbose_name=_("acquired interfaces"))
     
 
     class Meta:
@@ -203,9 +209,10 @@ class Achievement(models.Model):
 
 class Reward(models.Model):
     """
+    Rewards for Levelup, Trophies, Achievements and Quests.
     """
     reward_exp = models.BigIntegerField(_("reward exp"), null=True, blank=True)
-    phrase = models.CharField(_("reward phrase"), max_length=255)
+    phrase = models.CharField(_("reward phrase"), max_length=1023)
     #TODO: coupon?
     
 
