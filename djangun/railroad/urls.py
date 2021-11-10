@@ -14,7 +14,7 @@ app_name = "djangun.railroad"
 urlpatterns = [
     # path("", , name=""),
 
-    path("<str:username>", main_view, name="railroad_main"), # 클라우드 관리콘솔
+    path("<str:username>/", main_view, name="railroad_main"), # 클라우드 관리콘솔
     # revolver - production cheap VPS
     path("<str:username>/revolvers/", revolver_list, name="revolver_list"), # 서비스용 풀타임 VPS
     path("<str:username>/revolvers/<str:vps_name>/", revolver_detail, name="revolver_detail"), # 서비스용 풀타임 VPS 상세
