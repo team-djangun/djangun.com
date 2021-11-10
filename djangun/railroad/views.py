@@ -9,6 +9,7 @@ User = get_user_model()
 
 
 def main_view(request, username):
+    print("\n\n\n"+username+"\n\n\n")
     user = User.objects.get(name=username)
     rail = user.railroadinterface
     shotguns = rail.gun_set.filter(gun_type="shotgun")
@@ -16,8 +17,9 @@ def main_view(request, username):
     # new_gun = rail.gun_set.create()
     return render(
         request,
-        "", # template
+        "railroad/console.html",
         {
+            "rail": rail,
             "shotguns": shotguns,
             "revolvers": revolvers
         })
