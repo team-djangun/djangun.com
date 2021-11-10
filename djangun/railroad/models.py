@@ -18,7 +18,7 @@ class RailroadInterface(models.Model):
         verbose_name_plural = _("railroad interfaces")
 
     def __str__(self):
-        return self.name
+        return self.user.name
 
     def get_absolute_url(self):
         return reverse("_detail", kwargs={"pk": self.pk})
