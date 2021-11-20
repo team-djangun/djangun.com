@@ -26,10 +26,11 @@ jobs:
           key: ${{ secrets.PRODUCTION_SSH_KEY }}
           port: ${{ secrets.PRODUCTION_SSH_PORT }}
           script: |
-          whoami && uptime
-          cd djangun.com
-          git pull origin main
-          docker-compose -f production.yml up -d --build
+            whoami
+            uptime
+            cd djangun.com
+            git pull origin main
+            docker-compose -f production.yml up -d --build
     
       - name: Send Slack deploy notifications
         uses: 8398a7/action-slack@v3
