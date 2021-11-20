@@ -26,10 +26,8 @@ jobs:
           key: ${{ secrets.PRODUCTION_SSH_KEY }}
           port: ${{ secrets.PRODUCTION_SSH_PORT }}
           script: |
-            whoami
             uptime
-            cd djangun.com
-            git pull origin main
+            cd djangun.com && git pull origin main
             docker-compose -f production.yml up -d --build
     
       - name: Send Slack deploy notifications
