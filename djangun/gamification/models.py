@@ -9,6 +9,9 @@ User = get_user_model()
 
 
 class Guild(models.Model):
+    """
+    Guild for users.
+    """
     guild_name = models.CharField(_("guild name"), max_length=255)
     # TODO: apply Markdown at guild_description
     guild_description = models.TextField(
@@ -79,7 +82,7 @@ class GamificationInterface(models.Model):
         # Reset level
         self.level = 1
 
-        # Reset trophys
+        # Reset trophies
         self.records.clear()
 
         # Reset achievements
