@@ -1,11 +1,6 @@
 from django.contrib import admin
-from .models import (
-    Guild,
-    LevelDefinition,
-    GoalCategory,
-    Trophy,
-    Achievement,
-)
+
+from .models import Achievement, GoalCategory, Guild, LevelDefinition, Trophy
 
 
 @admin.register(Guild)
@@ -20,7 +15,7 @@ class LevelDefinitionAdmin(admin.ModelAdmin):
 
 @admin.register(GoalCategory)
 class GoalCategoryAdmin(admin.ModelAdmin):
-    list_display = ("category", "next_goal") 
+    list_display = ("category", "next_goal")
 
 
 @admin.register(Trophy)
@@ -30,4 +25,4 @@ class TrophyAdmin(admin.ModelAdmin):
 
 @admin.register(Achievement)
 class AchievementAdmin(admin.ModelAdmin):
-    list_display = ("achieve_name")
+    list_display = ("achieve_name",)
