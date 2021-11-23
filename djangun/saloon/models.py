@@ -32,4 +32,3 @@ class Comment(models.Model):    #댓글
 class WorkPlace(models.Model):      #개인 작업공간
     code_txt = models.TextField()
     user_id = models.ForeignKey(User, on_delete = models.CASCADE)
-
