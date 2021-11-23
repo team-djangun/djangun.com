@@ -43,3 +43,11 @@ class Gun(TimeStampedModel):
 
     def get_absolute_url(self):
         return reverse("Shotgun_detail", kwargs={"pk": self.pk})
+
+
+# class BulletFee(TimeStampedModel):
+#    """이용료 장부 모델. 나중에 추가할 것"""
+
+
+# class Safety:
+#    """보안 관리 모델. ssh 키, 인증관리(OTP 등)"""
