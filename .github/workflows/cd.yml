@@ -29,6 +29,7 @@ jobs:
             uptime
             cd djangun.com && git pull origin main
             docker-compose -f production.yml up -d --build
+            docker-compose -f production.yml run --rm django python manage.py migrate
     
       - name: Send Slack deploy notifications
         uses: 8398a7/action-slack@v3
