@@ -14,14 +14,10 @@ class Migration(migrations.Migration):
             name='leveldefinition',
             options={},
         ),
-        migrations.RemoveField(
-            model_name='leveldefinition',
-            name='level_phase',
-        ),
         migrations.AddField(
             model_name='leveldefinition',
             name='id',
-            field=models.AutoField(auto_created=True, default=1, primary_key=True, serialize=False, verbose_name='ID'),
+            field=models.IntegerField(default=1, serialize=False, verbose_name='ID'),
             preserve_default=False,
         ),
     ]
