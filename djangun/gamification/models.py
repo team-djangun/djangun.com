@@ -20,7 +20,11 @@ class Guild(models.Model):
         _("guild anniversary"), auto_now=False, auto_now_add=True
     )
     guild_master = models.ForeignKey(
-        "GamificationInterface", verbose_name=_("guild master"), related_name="guild_master", null=True, on_delete=models.PROTECT
+        "GamificationInterface",
+        verbose_name=_("guild master"),
+        related_name="guild_master",
+        null=True,
+        on_delete=models.PROTECT,
     )
     guild_simbol = models.ImageField(
         _("guild simbol"),
