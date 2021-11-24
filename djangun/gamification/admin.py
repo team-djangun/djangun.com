@@ -10,7 +10,7 @@ class GuildAdmin(admin.ModelAdmin):
 
 @admin.register(LevelDefinition)
 class LevelDefinitionAdmin(admin.ModelAdmin):
-    list_display = ("level_phase", "level_name", "level_exp")
+    list_display = ("level_name", "level_exp")
 
 
 @admin.register(GoalCategory)

@@ -103,15 +103,11 @@ class LevelDefinition(models.Model):
     set level name as bronze, silver, gold... or Beginner, Expert, Master...
     """
 
-    level_phase = models.AutoField(_("level phase"), unique=True, primary_key=True)
     level_name = models.CharField(_("level name"), unique=True, max_length=255)
     level_exp = models.BigIntegerField(_("level exp"))
     total_exp = models.BigIntegerField(_("total exp"), null=True, blank=True)
 
     objects = LevelDefinitionManager()
-
-    class Meta:
-        ordering = ["level_phase"]
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
