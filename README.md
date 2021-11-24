@@ -2,8 +2,8 @@ Djangun PaaS project
 ====================
 
 [![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/pydanny/cookiecutter-django/)
-
 [![Black code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
+[![Github Actions status](https://github.com/binaryeast/djangun.com/actions/workflows/ci.yml/badge.svg)](https://github.com/binaryeast/djangun.com/actions/workflows/ci.yml)
 
 장건 - All-in-one 코딩 플랫폼 프로젝트.
 
