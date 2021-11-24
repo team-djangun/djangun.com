@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import Sum, F, Q
+from django.db.models import F, Q, Sum  # noqa
 
 
 class LevelDefinitionManager(models.Manager):

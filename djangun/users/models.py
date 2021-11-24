@@ -5,7 +5,6 @@ from django.utils.translation import gettext_lazy as _
 
 from djangun.gamification.models import GamificationInterface
 
-
 # TODO: add payment data model - OnetoOne, signal?
 
 
@@ -19,7 +18,9 @@ class User(AbstractUser):
     email = models.EmailField(_("email address"), blank=False)
 
     is_register_payment = models.BooleanField("결제정보 등록여부", default=False)
-    gamificate = models.OneToOneField(GamificationInterface, null=True, on_delete=models.CASCADE)
+    gamificate = models.OneToOneField(
+        GamificationInterface, null=True, on_delete=models.CASCADE
+    )
 
     def get_absolute_url(self):
         """Get url for user's detail view.
