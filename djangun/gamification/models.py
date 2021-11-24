@@ -116,10 +116,6 @@ class LevelDefinition(models.Model):
     def __str__(self):
         return self.level_name
 
-    @property
-    def id(self):
-        return "LevelDefinition hasn't id. it has level_phase for primary key."
-
 
 class ExpChange(models.Model):
     """
