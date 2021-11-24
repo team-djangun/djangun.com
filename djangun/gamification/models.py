@@ -109,10 +109,6 @@ class LevelDefinition(models.Model):
 
     objects = LevelDefinitionManager()
 
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-        self.objects.update_total()
-
     def __str__(self):
         return self.level_name
 
