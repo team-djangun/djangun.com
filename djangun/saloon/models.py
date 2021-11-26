@@ -15,7 +15,7 @@ User = get_user_model()
 class SaloonCategory(models.Model):
     category = models.CharField(max_length=255)
     # each language, each field
-    upper_category = models.ForeignKey("self", on_delete=models.SET_NULL)
+    upper_category = models.ForeignKey("self", null=True, on_delete=models.SET_NULL)
 
 
 class Gallary(models.Model):  # 갤러리 카테고리
