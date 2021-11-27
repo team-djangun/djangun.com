@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h1>
+클라우드 관리 콘솔
+</h1>
+
+{% if rail %}
+<p>관리 콘솔에 오신 것을 환영합니다, {{ user.name }}님!</p>
+{% endif %}
+{% endblock content %}
