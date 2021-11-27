@@ -10,7 +10,7 @@ class SaloonCategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Gallary)
 class GallaryAdmin(admin.ModelAdmin):
-    list_display = ("gallary_name", "gallary_supporter")
+    list_display = ("id", "gallary_name")
 
 
 @admin.register(Post)
