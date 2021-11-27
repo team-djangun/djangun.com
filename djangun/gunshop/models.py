@@ -18,7 +18,7 @@ class LectureCategory(models.Model):
 class Lecture(models.Model):
     # 1 대 다 연결, on_delete는 상위 삭제될 때 어케할지
     category = models.ForeignKey(LectureCategory, on_delete=models.CASCADE)
-    lectrue_name = models.CharField(max_length=1000)
+    lecture_name = models.CharField(max_length=1000)
     tutor = models.ForeignKey(User, on_delete=models.CASCADE)
     difficulty = models.IntegerField()
     star = models.IntegerField()
