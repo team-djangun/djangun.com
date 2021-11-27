@@ -1,4 +1,4 @@
-exclude: 'docs|node_modules|migrations|.git|.tox|djangun/static'
+exclude: 'docs|node_modules|migrations|.git|.tox|djangun/static|djangun/templates'
 default_stages: [commit]
 fail_fast: true
 
