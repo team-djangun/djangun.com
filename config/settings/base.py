@@ -80,6 +80,7 @@ LOCAL_APPS = [
     "djangun.ranch.apps.RanchConfig",
     "djangun.gunshop.apps.GunshopConfig",
     "djangun.saloon.apps.SaloonConfig",
+    "djangun.railroad.apps.RailroadConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
