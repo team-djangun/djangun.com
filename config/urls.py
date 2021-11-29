@@ -25,6 +25,10 @@ urlpatterns = [
     path("welcome/", welcome_view, name="welcome"),
     # our apps
     path("railroads/", include("djangun.railroad.urls")),
+    path("ranches/", include("djangun.ranch.urls")),
+    path("gunshops/", include("djangun.gunshop.urls")),
+    path("saloons/", include("djangun.saloon.urls")),
+    # path("/", include("djangun.")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 if settings.DEBUG:
     # Static file serving when using Gunicorn + Uvicorn for local web socket development
