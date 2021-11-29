@@ -38,14 +38,15 @@
     <!-- ===============================================-->
     <!--    Main Content-->
     <!-- ===============================================-->
-      <nav class="navbar navbar-expand-lg navbar-light fixed-top py-4 d-block" style="background-color:#57926E;">
-        <div class="container"><a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/gallery/djangun logo white.png' %}" height="36" alt="djangun logo" /></a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"> </span></button>
+    <main class="main" id="top">
+      <nav class="navbar navbar-expand-lg navbar-light fixed-top py-4 d-block" data-navbar-on-scroll="data-navbar-on-scroll">
+        <div class="container"><a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/gallery/djangun logo white.png' %}" height="36" alt="..." /></a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"> </span></button>
           <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base">
               <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link fw-medium active" aria-current="page" href="#home">Project</a></li>
               <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#pricingTable">Cloud</a></li>
               <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#pricingTable">Study </a></li>
-              <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#help">Community</a></li>
+              <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#help">Help</a></li>
             </ul>
             <form class="ps-lg-5">
             {% if not user.is_authenticated %}
@@ -57,19 +58,13 @@
             {% endif %}
             <svg class="bi bi-person-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                   <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
-                </svg></a>
-            </form>
+                </svg></a></form>
           </div>
         </div>
       </nav>
-      <div style="padding:50px;"></div>
-      <div style="padding:50px;"></div>
 
-    <main class="main">
       {% block content %}
-      {% comment %} <h1>{{ user.is_authenticated }}</h1> {% endcomment %}
       {% endblock content %}
-    </main>
 
       {% block footer %}
       <section class="py-0 py-xxl-6" id="help">
@@ -132,7 +127,7 @@
         </div>
       </section>
       {% endblock footer %}
-    <!-- ===============================================-->
+    </main><!-- ===============================================-->
     <!--    End of Main Content-->
     <!-- ===============================================-->
 
