@@ -1,6 +1,7 @@
 """
 Base settings to build other settings files upon.
 """
+import re
 from pathlib import Path
 
 import environ
@@ -314,3 +315,9 @@ REST_FRAMEWORK = {
 CORS_URLS_REGEX = r"^/api/.*$"
 # Your stuff...
 # ------------------------------------------------------------------------------
+
+IGNORABLE_404_URLS = [
+    re.compile(r"^/apple-touch-icon.*\.png$"),
+    re.compile(r"^/favicon\.ico$"),
+    re.compile(r"^/robots\.txt$"),
+]
