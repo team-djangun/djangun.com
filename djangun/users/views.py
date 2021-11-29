@@ -39,7 +39,7 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
     permanent = False
 
     def get_redirect_url(self):
-        if self.reqeust.user.name == "":
+        if self.request.user.name == "":
             return reverse("welcome")
         else:
             return reverse(
