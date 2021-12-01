@@ -25,24 +25,24 @@ User = get_user_model()
 #         return reverse("_detail", kwargs={"pk": self.pk})
 
 
-class Gun(TimeStampedModel):
+class Car(TimeStampedModel):
 
     owner = models.ForeignKey(User, verbose_name=_("소유자"), on_delete=models.CASCADE)
-    gun_type = models.CharField(_("총 종류"), max_length=20)  # VPS 종류
-    name = models.CharField(_("gun_name"), max_length=500)  # VPS 이름
-    description = models.TextField(_("gun_description"))  # VPS 설명
+    car_type = models.CharField(_("클라우드 종류"), max_length=20)  # VPS 종류
+    name = models.CharField(_("car_name"), max_length=500)  # VPS 이름
+    description = models.TextField(_("car_description"))  # VPS 설명
 
     # 클라우드  실행시간과 정산은 외래키로 나중에 붙일 것.
 
     class Meta:
-        verbose_name = _("Shotgun")
-        verbose_name_plural = _("Shotguns")
+        verbose_name = _("Car")
+        verbose_name_plural = _("Cars")
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("Shotgun_detail", kwargs={"pk": self.pk})
+        return reverse("Car_detail", kwargs={"pk": self.pk})
 
 
 # class BulletFee(TimeStampedModel):

@@ -1,8 +1,8 @@
 from django.contrib import admin
 
-from .models import Gun
+from .models import Car
 
 
-@admin.register(Gun)
-class GunAdmin(admin.ModelAdmin):
-    list_display = ("owner", "name", "gun_type")
+@admin.register(Car)
+class CarAdmin(admin.ModelAdmin):
+    list_display = ("owner", "name", "car_type")

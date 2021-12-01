@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView
 
-from .models import Gun
+from .models import Car
 
 User = get_user_model()
 
@@ -35,7 +35,7 @@ revolver_list = RevolverListView.as_view()
 
 class RevolverDetailView(DetailView):
     template_name = ""
-    model = Gun
+    model = Car
     context_object_name = "revolver"
 
 
@@ -58,8 +58,8 @@ shotgun_list = ShotgunListView.as_view()
 
 class ShotgunDetailView(DetailView):
     template_name = ""
-    model = Gun
-    context_object_name = "shotgun"
+    model = Car
+    context_object_name = "car"
 
 
 shotgun_detail = ShotgunDetailView.as_view()
