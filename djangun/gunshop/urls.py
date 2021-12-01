@@ -1,10 +1,18 @@
 from django.urls import path, re_path  # noqa
 
+from .views import (
+    gunshop_chapter_view,
+    gunshop_chapterlist_view,
+    gunshop_lecture_list_view,
+)
+
 app_name = "djangun.gunshop"
 
 urlpatterns = [
-    # path("", , name="gunshop_status"),
-    # path("<int:category>/", , name="gunshop_category"),
-    # path("<str:lecture>/", , name="gunshop_lecture_home"),
-    # path("<str:lecture>/<int:class>/", , name="gunshop_lecture_class"),
+    path("", gunshop_lecture_list_view, name="gunshop_lecture_list"),
+    path("<str:lecture>/", gunshop_chapterlist_view, name="gunshop_lecture_class"),
+    path(
+        "<str:lecture>/<int:pk>/", gunshop_chapter_view, name="gunshop_lecture_chapter"
+    ),
+    # path("<int:category>/", gunshop_lecture_list_view, name="gunshop_category"),
 ]

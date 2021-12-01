@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static i18n compress %}
+
+{% block title %}
+Djangun | 강의
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <h1>강의 건샵</h1>
+    <p>강의 리스트</p>
+    <ol>
+      {% for lecture in lectures %}
+      <li>{{ lecture.lecture_name }}</li>
+      {% endfor %}
+    </ol>
+  </div>
+</div>
+{% endblock content %}
