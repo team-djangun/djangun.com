@@ -14,6 +14,9 @@ class LectureCategory(models.Model):
         "self", null=True, blank=True, on_delete=models.SET_NULL
     )
 
+    def __str__(self):
+        return self.category_name
+
 
 class Lecture(models.Model):
     # 1 대 다 연결, on_delete는 상위 삭제될 때 어케할지
@@ -23,12 +26,18 @@ class Lecture(models.Model):
     difficulty = models.IntegerField()
     star = models.IntegerField()
 
+    def __str__(self):
+        return self.lecture_name
+
 
 class Chapter(models.Model):
     lecture = models.ForeignKey(Lecture, on_delete=models.CASCADE)
     chaptername = models.CharField(max_length=1000)
     chapter_body = models.TextField()
     is_published = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.chaptername
 
 
 # class ChapterComment?
