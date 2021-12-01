@@ -19,6 +19,9 @@ class SaloonCategory(models.Model):
         "self", null=True, blank=True, on_delete=models.SET_NULL
     )
 
+    def __str__(self):
+        return self.category
+
 
 class Gallary(models.Model):  # 갤러리 카테고리
     gallary_category = models.ForeignKey(
@@ -26,6 +29,9 @@ class Gallary(models.Model):  # 갤러리 카테고리
     )
     gallary_name = models.CharField(max_length=255)
     gallary_supporter = models.ManyToManyField(User)  # 갤러리 봉사자 or 완장 or 관리자.
+
+    def __str__(self):
+        return self.gallary_name
 
 
 class Post(TimeStampedModel):  # 게시물
@@ -35,8 +41,14 @@ class Post(TimeStampedModel):  # 게시물
     writter = models.ForeignKey(User, on_delete=models.CASCADE)
     star = models.IntegerField()
 
+    def __str__(self):
+        return self.title
+
 
 class Comment(TimeStampedModel):  # 댓글
     content = models.CharField(max_length=1000)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     writter = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.content
