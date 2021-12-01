@@ -73,6 +73,7 @@ THIRD_PARTY_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
     "corsheaders",
+    "embed_video",
 ]
 
 LOCAL_APPS = [
