@@ -21,11 +21,15 @@ class SaloonCategory(models.Model):
 
 
 class Gallary(models.Model):  # 갤러리 카테고리
+    gallary_category = models.ForeignKey(
+        SaloonCategory, null=True, blank=True, on_delete=models.SET_NULL
+    )
     gallary_name = models.CharField(max_length=255)
     gallary_supporter = models.ManyToManyField(User)  # 갤러리 봉사자 or 완장 or 관리자.
 
 
 class Post(TimeStampedModel):  # 게시물
+    posted_gallary = models.ForeignKey(Gallary, on_delete=models.CASCADE)
     title = models.CharField(max_length=1000)
     content = models.TextField()
     writter = models.ForeignKey(User, on_delete=models.CASCADE)
