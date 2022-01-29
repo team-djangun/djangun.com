@@ -43,10 +43,14 @@
         <div class="container"><a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/gallery/djangun logo white.png' %}" height="36" alt="..." /></a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"> </span></button>
           <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base">
-              <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link fw-medium active" aria-current="page" href="#home">Project</a></li>
-              <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#pricingTable">Cloud</a></li>
-              <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#pricingTable">Study </a></li>
-              <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#help">Help</a></li>
+              <li class="nav-item px-2"><a class="nav-link fw-medium active" aria-current="page" href="{% url 'djangun.ranch:ranch_dashboard' %}">Project</a></li>
+              {% if user.username %}
+              <li class="nav-item px-2"><a class="nav-link" href="{% url 'djangun.railroad:railroad_main' username=user.username %}">Cloud</a></li>
+              {% else %}
+              <li class="nav-item px-2"><a class="nav-link" href="{% url 'account_login' %}">Cloud</a></li>
+              {% endif %}
+              <li class="nav-item px-2"><a class="nav-link" href="{% url 'djangun.gunshop:gunshop_lecture_list' %}">Study </a></li>
+              <li class="nav-item px-2"><a class="nav-link" href="{% url 'djangun.saloon:saloon_main' %}">Community</a></li>
             </ul>
             <form class="ps-lg-5">
             {% if not user.is_authenticated %}

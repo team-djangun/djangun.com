@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static i18n compress %}
+
+{% block title %}
+Djangun | 커뮤니티
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <h1>커뮤니티</h1>
+    <p>기술 관련 질문, 토론, 문의, 공유 등을 자유롭게 할 수 있는 공간입니다.</p>
+    {% if categories %}
+    {% for category in categories %}
+      <ul>
+        <li>
+          <a href={% url 'djangun.saloon:saloon_main_category' category.category %}>
+            {{ category.category }}
+          </a>
+        </li>
+      </ul>
+    {% endfor %}
+    {% endif %}
+    {% if gallaries %}
+    <ol>
+      {% for gallary in gallaries %}
+      <li>
+        <a href={% url 'djangun.saloon:saloon_gallary_list' category=now_category gallary=gallary %}>
+          {{ gallary.gallary_name }}
+        </a>
+      </li>
+      {% endfor %}
+      </ol>
+    {% endif %}
+  </div>
+</div>
+{% endblock content %}

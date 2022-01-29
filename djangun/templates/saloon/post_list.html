@@ -8,11 +8,19 @@ Djangun | 커뮤니티
 {% block content %}
 <div class="container">
   <div class="row">
-    <h1>커뮤니티 살룬</h1>
-    <h2>갤러리 포스트 리스트</h2>
+    <h1>커뮤니티</h1>
+    <hr>
+    <div style="padding:10px 0"></div>
+    <h2>Python 갤러리입니다.</h2>
+    <div style="padding:10px 0"></div>
+    <hr>
     <ol>
     {% for post in object_list %}
-      <li>{{ post.title }}</li>
+      <li style="margin:10px">
+        <a href="test.com">
+          {{ post.title }}
+        </a>
+        </li>
       {% comment %} <li><a href={% url 'djangun.saloon:saloon_gallary_detail' gallary.id %}>{{ gallary.gallary_name}}</a></li> {% endcomment %}
       {% endfor %}
     </ol>

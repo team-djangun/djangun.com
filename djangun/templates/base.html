@@ -42,10 +42,14 @@
         <div class="container"><a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/gallery/djangun logo white.png' %}" height="36" alt="djangun logo" /></a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"> </span></button>
           <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base">
-              <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link fw-medium active" aria-current="page" href="#home">Project</a></li>
-              <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#pricingTable">Cloud</a></li>
-              <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#pricingTable">Study </a></li>
-              <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#help">Community</a></li>
+              <li class="nav-item px-2"><a class="nav-link fw-medium active" aria-current="page" href="{% url 'djangun.ranch:ranch_dashboard' %}">Project</a></li>
+              {% if user.username %}
+              <li class="nav-item px-2"><a class="nav-link" href="{% url 'djangun.railroad:railroad_main' username=user.username %}">Cloud</a></li>
+              {% else %}
+              <li class="nav-item px-2"><a class="nav-link" href="{% url 'account_login' %}">Cloud</a></li>
+              {% endif %}
+              <li class="nav-item px-2"><a class="nav-link" href="{% url 'djangun.gunshop:gunshop_lecture_list' %}">Study </a></li>
+              <li class="nav-item px-2"><a class="nav-link" href="{% url 'djangun.saloon:saloon_main' %}">Community</a></li>
             </ul>
             <form class="ps-lg-5">
             {% if not user.is_authenticated %}
@@ -108,13 +112,13 @@
               <h5 class="lh-lg fw-bold text-white">BIZ INFO</h5>
               <ul class="list-unstyled mb-6 mb-md-0">
                 <li class="lh-lg">
-                  <p class="text-white text-word-keep-all">바이너리스트 주식회사, 대표이사 이승주</p>
+                  <p class="text-white text-word-keep-all">장건 주식회사, 대표이사 이승주</p>
                 </li>
                 <li class="lh-lg">
-                  <p class="text-white text-word-keep-all">강원도 원주시 건강로 23 (반곡동), 303호 - 26464</p>
+                  <p class="text-white text-word-keep-all">서울특별시 동작구 상도로55길 8-3, 365스테이션 301호</p>
                 </li>
-                <li class="lh-lg"><a class="text-white" href="https://teht.hometax.go.kr/websquare/websquare.html?w2xPath=/ui/ab/a/a/UTEABAAA13.xml" target="_blank">사업자등록번호 : 406-81-65457</a></li>
-                <li class="lh-lg"><a class="text-white" href="https://ftc.go.kr/www/bizCommList.do?key=232" target="_blank">통신판매업 신고번호 : 2021-강원원주-00598</a></li>
+                <li class="lh-lg"><a class="text-white" href="https://teht.hometax.go.kr/websquare/websquare.html?w2xPath=/ui/ab/a/a/UTEABAAA13.xml" target="_blank">사업자등록번호 : 781-87-02321</a></li>
+                <li class="lh-lg"><a class="text-white" href="https://ftc.go.kr/www/bizCommList.do?key=232" target="_blank">통신판매업 신고 준비중</a></li>
               </ul>
             </div>
           </div>
